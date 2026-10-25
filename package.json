@@ -7,7 +7,7 @@
     "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint",
-    "test": "node --experimental-strip-types --test lib/search.test.ts lib/selection.test.ts",
+    "test": "node --experimental-strip-types --test lib/search.test.ts lib/selection.test.ts lib/wine/recommend.test.ts",
     "e2e": "node scripts/e2e.mjs"
   },
   "dependencies": {
