@@ -41,6 +41,7 @@ export async function updateSession(request: NextRequest) {
   const isLogin = path.startsWith("/login");
   const isAuth = path.startsWith("/auth");
   const isApi = path.startsWith("/api");
+  const isWine = path === "/wine" || path.startsWith("/wine/");
   const hasAuthCode = request.nextUrl.searchParams.has("code");
 
   const withCookies = (response: NextResponse) => {
@@ -56,7 +57,8 @@ export async function updateSession(request: NextRequest) {
     return withCookies(NextResponse.redirect(url));
   }
 
-  if (!user && !isLogin && !isAuth && !isApi) {
+  // CellarMatch consumer/kiosk MVP is guest-accessible (store session only).
+  if (!user && !isLogin && !isAuth && !isApi && !isWine) {
     const url = request.nextUrl.clone();
     url.pathname = "/login";
     url.search = "";
